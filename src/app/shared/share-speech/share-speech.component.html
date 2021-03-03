@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left"><i class="fa fa-mail-forward"></i> Share Speech</h4>
+</div>
+<div class="modal-body">
+  <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" formControlName="email" id="email" class="form-control" placeholder="Enter email" required>
+      <div *ngIf="emailForm.controls.email.invalid && (emailForm.controls.email.dirty || emailForm.controls.email.touched)"
+        class="alert alert-danger" role="alert">
+        <span *ngIf="emailForm.controls.email.errors.required">
+          Email is required.
+        </span>
+        <span *ngIf="emailForm.controls.email.errors.email">
+          Invalid email.
+        </span>
+      </div>
+    </div>
+    <div class="modal-footer" >
+      <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+      <button type="submit" class="btn btn-success" [disabled]="!emailForm.valid" style="float: right;">
+        <span *ngIf="isProcessingRequest"><i class="fa fa-spinner fa-spin"></i></span>
+        <span *ngIf="!isProcessingRequest">Save</span>
+      </button>
+    </div>
+  </form>
+</div>
