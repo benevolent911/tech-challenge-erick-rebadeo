@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component,
+         EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Speech } from '../models/speech.model';
 
@@ -6,7 +7,8 @@ import { Speech } from '../models/speech.model';
 @Component({
   selector: 'app-speech-sidebar',
   templateUrl: './speech-sidebar.component.html',
-  styleUrls: ['./speech-sidebar.component.css']
+  styleUrls: ['./speech-sidebar.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SpeechSidebarComponent implements OnInit {
 
@@ -18,6 +20,9 @@ export class SpeechSidebarComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Set selected speech
+   */
   onSelect(speech: Speech): void {
     this.speechChanged.emit(speech);
   }

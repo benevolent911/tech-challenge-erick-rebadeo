@@ -1,16 +1,15 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { tap } from 'rxjs/operators';
 
 import { SpeechesStore } from './../../services/speeches.store';
 import { Speech } from '../models/speech.model';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-share-speech',
   templateUrl: './share-speech.component.html',
-  styleUrls: ['./share-speech.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./share-speech.component.css']
 })
 export class ShareSpeechComponent implements OnInit {
 
