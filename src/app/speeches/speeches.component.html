@@ -1,0 +1,12 @@
+<app-header></app-header>
+
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-sm-4 col-md-4">
+      <app-speech-sidebar [speeches]="speeches$ | async" (speechChanged)="onSelect($event)"></app-speech-sidebar>
+    </div>
+    <div class="col-sm-8 col-md-8 mb-3">
+      <app-speech-main [speech]="selectedSpeech"></app-speech-main>
+    </div>
+  </div>
+</main>
