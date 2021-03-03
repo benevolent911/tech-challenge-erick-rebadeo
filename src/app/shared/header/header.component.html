@@ -1,0 +1,25 @@
+<div class="navbar-wrapper">
+  <div class="container">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" routerLink="/"><i class="fa fa-list-alt" style="color: white;"></i> Speech App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSpeech" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarSpeech" class="navbar-collapse collapse justify-content-end">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"><i class="fa fa-folder" style="color: white;"></i> View My Speeches</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/speeches/add" routerLinkActive="active-link"><i class="fa fa-plus" style="color: white;"></i> Submit a new Speech</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/speeches/search" routerLinkActive="active-link" ><i class="fa fa-search" style="color: white;"></i> Search all Speeches</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
