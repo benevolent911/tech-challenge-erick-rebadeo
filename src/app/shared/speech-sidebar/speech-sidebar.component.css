@@ -1,0 +1,9 @@
+.list-group {
+  margin-bottom: 50px;
+}
+
+.speeches-btn {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: none;
+}
