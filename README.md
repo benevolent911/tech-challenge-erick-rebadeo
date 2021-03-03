@@ -1,4 +1,17 @@
-# SpeechesApp
+# tech-challenge-erick-rebadeo
+# Angular Developer Tech Challenge (Angular 8) by Erick Rebadeo
+
+### Features
+
+* Home/Speeches Page, Add Speech Page, Search Speech Page
+* Edit/delete speech, share speech
+* Data validation (author, speech content, keyword and date)
+
+### Includes
+* [Ngx-Bootstrap](https://github.com/valor-software/ngx-bootstrap) for CSS and JQuery plugins
+* [Font Awesome](https://github.com/FortAwesome/Font-Awesome) for Font Awesome Icons
+* [Ngx-Chips](https://github.com/Gbuomprisco/ngx-chips) for keywords tag input
+* [Ngx-Toastr](https://github.com/scttcper/ngx-toastr) for toastr messages
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.0.
 
