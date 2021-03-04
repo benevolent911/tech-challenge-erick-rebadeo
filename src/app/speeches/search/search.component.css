@@ -1,0 +1,13 @@
+main {
+  margin-top: 100px;
+}
+
+::ng-deep .dropdown-menu {
+  width: 100% !important;
+}
+
+::ng-deep .dropdown-item {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
