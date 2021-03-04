@@ -7,6 +7,7 @@
 * Edit/delete speech, share speech
 * Search by categories
 * Data validation (author, speech content, keyword and date)
+* Unsaved changes confirmation in add new speech page
 
 ### Includes
 * [Ngx-Bootstrap](https://github.com/valor-software/ngx-bootstrap) for CSS and JQuery plugins
