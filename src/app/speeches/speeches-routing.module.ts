@@ -3,6 +3,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { PendingChangesGuard } from './../guards/pending-changes.guard';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TagInputModule } from 'ngx-chips';
@@ -22,9 +23,10 @@ const speechesRoutes: Routes = [
     component: SpeechesComponent
   },
   {
+    canDeactivate: [PendingChangesGuard],
     path: 'speeches/add',
     pathMatch: 'full',
-    component: AddComponent
+    component: AddComponent,
   },
   {
     path: 'speeches/search',
@@ -55,6 +57,6 @@ const speechesRoutes: Routes = [
     TypeaheadModule.forRoot(),
   ],
   exports: [RouterModule],
-  providers: []
+  providers: [PendingChangesGuard]
 })
 export class SpeechesRoutingModule { }
