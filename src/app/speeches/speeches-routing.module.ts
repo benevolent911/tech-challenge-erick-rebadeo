@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TagInputModule } from 'ngx-chips';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 import { AddComponent } from './add/add.component';
 import { HeaderComponent } from './../shared/header/header.component';
@@ -50,7 +51,8 @@ const speechesRoutes: Routes = [
     RouterModule.forChild(speechesRoutes),
     TabsModule.forRoot(),
     TagInputModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    TypeaheadModule.forRoot(),
   ],
   exports: [RouterModule],
   providers: []
