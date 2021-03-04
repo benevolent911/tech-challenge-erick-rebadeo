@@ -3,8 +3,9 @@
 
 ### Features
 
-* Home/Speeches Page, Add Speech Page, Search Speech Page
+* Home/Speeches Page, Add Speech Page, Search Speeches Page
 * Edit/delete speech, share speech
+* Search by categories
 * Data validation (author, speech content, keyword and date)
 
 ### Includes
