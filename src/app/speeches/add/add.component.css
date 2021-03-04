@@ -1,0 +1,8 @@
+main {
+  margin-top: 100px;
+}
+
+.clear-btn, .save-btn {
+  margin-left: 20px;
+  width: 80px;
+}

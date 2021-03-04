@@ -1,3 +1,71 @@
 <app-header></app-header>
 
-<p>add works!</p>
+<main role="main" class="container-md">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 col-md-8 col-offset-4 mb-3">
+      <h2>
+        <span class="primary-text"><i class="fa fa-pencil-square" style="color: black;"></i> Submit New Speech</span>
+      </h2>
+      <br>
+      <form [formGroup]="speechForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="body">Speech:</label>
+          <textarea formControlName="body" rows="12" id="body" class="form-control"  placeholder="Enter speech text" required></textarea>
+          <div *ngIf="speechForm.controls.body.invalid && (speechForm.controls.body.dirty || speechForm.controls.body.touched)"
+            class="alert alert-danger" role="alert">
+            <span *ngIf="speechForm.controls.body.errors.required">
+              Speech content is required.
+            </span>
+            <span *ngIf="speechForm.controls.body.errors.minlength">
+              Speech must be at least 10 characters long.
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="author">Author:</label>
+          <input type="text" formControlName="author" id="author" class="form-control" placeholder="Enter author" required>
+          <div *ngIf="speechForm.controls.author.invalid && (speechForm.controls.author.dirty || speechForm.controls.author.touched)"
+            class="alert alert-danger" role="alert">
+            <span *ngIf="speechForm.controls.author.errors.required">
+              Author is required.
+            </span>
+            <span *ngIf="speechForm.controls.author.errors.minlength">
+              Author must be at least 10 characters long.
+            </span>
+            <span *ngIf="speechForm.controls.author.errors.pattern">
+              Author must contain characters.
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="keywords" tooltip="Double click keyword to edit. Enter to confirm.">Keywords:</label>
+          <tag-input formControlName="keywords" [editable]="true" [(ngModel)]="keywords"></tag-input>
+          <div *ngIf="speechForm.controls.keywords.invalid && (speechForm.controls.keywords.dirty || speechForm.controls.keywords.touched)"
+            class="alert alert-danger" role="alert">
+            <span *ngIf="speechForm.controls.keywords.errors.required">
+              Keywords is required.
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="date">Date:</label>
+          <input type="text" formControlName="date" placeholder="Date" placeholder="Enter date" placement="top"
+            id="date" class="form-control" [bsConfig]="{ isAnimated: true }" bsDatepicker required>
+          <div *ngIf="speechForm.controls.date.invalid && (speechForm.controls.date.dirty || speechForm.controls.date.touched)"
+            class="alert alert-danger" role="alert">
+            <span *ngIf="speechForm.controls.date.errors.required">
+              Date is required.
+            </span>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success save-btn" [disabled]="!speechForm.valid" style="float: right;">
+          <span *ngIf="isProcessingRequest"><i class="fa fa-spinner fa-spin"></i></span>
+          <span *ngIf="!isProcessingRequest">Save</span>
+        </button>
+        <button type="button" class="btn btn-warning clear-btn" [disabled]="!speechForm.valid" (click)="onClear()" style="float: right;">
+          <span>Clear</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
