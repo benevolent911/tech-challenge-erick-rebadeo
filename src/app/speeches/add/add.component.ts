@@ -1,9 +1,11 @@
-import { ToastrService } from 'ngx-toastr';
-import { SpeechesStore } from './../../services/speeches.store';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Speech } from 'src/app/shared/models/speech.model';
 import { tap } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
+
+import { SpeechesStore } from './../../services/speeches.store';
+import { Speech } from 'src/app/shared/models/speech.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add',
@@ -18,6 +20,11 @@ export class AddComponent implements OnInit {
 
   constructor(private speechesStore: SpeechesStore,
               private toastr: ToastrService) { }
+
+  @HostListener('window:beforeunload')
+  canDeactivate(): Observable<boolean> | boolean {
+    return !this.speechForm.dirty;
+  }
 
   ngOnInit() {
     this.initializeForm();
