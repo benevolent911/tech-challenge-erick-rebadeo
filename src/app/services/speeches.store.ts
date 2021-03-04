@@ -1,6 +1,6 @@
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { Injectable } from "@angular/core";
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
 import { DataService } from './data.service';
@@ -20,20 +20,17 @@ export class SpeechesStore {
   }
 
   /**
-   * @param post
-   * Adds new post
+   * @param speech
+   * Adds new speech
    */
-  // addPost(post: Post): Observable<any> {
-  //   return this.dataService.createPost(post).pipe(
-  //     tap(res => {
-  //       const posts = this.subject.getValue();
-  //       const newPosts = [...posts, res];
+  addSpeech(speech: Speech): Observable<any> {
+    const speeches = this.subject.getValue();
+    speeches.push(speech);
 
-  //       this.subject.next(newPosts);
-  //       this.toastr.success('Post added!', 'Public Blog');
-  //     })
-  //   );
-  // }
+    this.subject.next(speeches);
+
+    return of(speech);
+  }
 
   /**
    * @param postId
@@ -63,15 +60,6 @@ export class SpeechesStore {
   getSpeeches(): Observable<Speech[]> {
     return this.speeches$;
   }
-
-  /**
-   * Get post by id
-   */
-  // getPost(postId: number): Observable<Post> {
-  //   return this.posts$.pipe(
-  //     map(posts => posts.find(post => post.id === postId))
-  //   );
-  // }
 
   /**
    * @param postId
