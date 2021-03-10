@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './speeches/speeches.module#SpeechesModule',
+    loadChildren: () => import('./speeches/speeches.module').then(x => x.SpeechesModule),
     pathMatch: 'full'
   },
   {
