@@ -1,5 +1,5 @@
 export class Speech {
-  id: number;
+  _id: string;
   author: string;
   keywords: string[];
   emailAddress: string[];
@@ -7,7 +7,7 @@ export class Speech {
   date: string;
 
   constructor() {
-    this.id = null;
+    this._id = '';
     this.author = '';
     this.keywords = [];
     this.emailAddress = [];
