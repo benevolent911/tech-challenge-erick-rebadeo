@@ -25,24 +25,34 @@ export class SpeechesStore {
    */
   addSpeech(speech: Speech): Observable<any> {
     const speeches = this.subject.getValue();
-    speeches.push(speech);
 
-    this.subject.next(speeches);
+    return this.dataService.addSpeech(speech).pipe(
+      tap((newSpeech) => {
+        speeches.push(newSpeech);
 
-    return of(speech);
+        this.subject.next(speeches);
+
+        return of(speech);
+      })
+    );
   }
 
   /**
-   * @param postId
+   * @param speechId
    * Deletes a speech
    */
-  deleteSpeech(speechId: number): Observable<boolean> {
+  deleteSpeech(speechId: string): Observable<any> {
     const speeches = this.subject.getValue();
-    const newSpeeches = speeches.filter(speech => speech.id !== speechId);
 
-    this.subject.next(newSpeeches);
+    return this.dataService.deleteSpeech(speechId).pipe(
+      tap(() => {
+        const newSpeeches = speeches.filter(speech => speech._id !== speechId);
 
-    return of(true);
+        this.subject.next(newSpeeches);
+
+        return of(true);
+      })
+    )
   }
 
   /**
@@ -50,7 +60,7 @@ export class SpeechesStore {
    */
   loadSpeeches(): void {
     this.dataService.loadSpeeches().pipe(
-      tap(speeches => this.subject.next(speeches))
+      tap((speeches: any) => this.subject.next(speeches))
     ).subscribe();
   }
 
@@ -66,18 +76,22 @@ export class SpeechesStore {
    * @param changes
    * Update speech
    */
-  saveSpeech(speechId: number, changes: Partial<Speech>): Observable<any> {
+  saveSpeech(speechId: string, changes: Partial<Speech>): Observable<any> {
     const speeches = this.subject.getValue();
-    const speechIndex = speeches.findIndex(post => post.id === speechId);
-    const newCourse: Speech = {
+    const speechIndex = speeches.findIndex(speech => speech._id === speechId);
+    const newSpeech: Speech = {
       ...speeches[speechIndex],
       ...changes
     };
-    const newCourses: Speech[] = speeches.slice(0);
-    newCourses[speechIndex] = newCourse;
+    const newSpeeches: Speech[] = speeches.slice(0);
+    return this.dataService.updateSpeech(speechId, newSpeech).pipe(
+      tap(() => {
+        newSpeeches[speechIndex] = newSpeech;
 
-    this.subject.next(newCourses);
+        this.subject.next(newSpeeches);
 
-    return of(speeches[speechIndex]);
+        return of(speeches[speechIndex]);
+      })
+    );
   }
 }
