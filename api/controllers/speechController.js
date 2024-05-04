@@ -14,7 +14,7 @@ const getSpeeches = asyncHandler(async (req, res) => {
 const getSpeech = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
-    const speech = await Speech.findById(id);
+    const speech = await Speech.findById({ _id: id });
     res.status(200).json(speech);
   } catch (error) {
     res.status(500);
@@ -35,7 +35,7 @@ const createSpeech = asyncHandler(async (req, res) => {
 const updateSpeech = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
-    const speech = await Speech.findByIdAndUpdate(id, req.body);
+    const speech = await Speech.findByIdAndUpdate({ _id: id }, req.body);
     if (!speech) {
       res.status(404);
       throw new Error(`Cannot find speech with ID ${id}`);
@@ -51,7 +51,7 @@ const updateSpeech = asyncHandler(async (req, res) => {
 const deleteSpeech = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
-    const speech = await Speech.findOneAndDelete(id);
+    const speech = await Speech.findOneAndDelete({ _id: id });
     if (!speech) {
       res.status(404);
       throw new Error(`Cannot find speech with ID ${id}`);
