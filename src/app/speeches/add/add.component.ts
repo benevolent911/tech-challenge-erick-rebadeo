@@ -15,7 +15,6 @@ import { Observable } from 'rxjs';
 export class AddComponent implements OnInit {
 
   isProcessingRequest: boolean;
-  keywords: string[];
   speechForm: FormGroup;
 
   constructor(private speechesStore: SpeechesStore,
@@ -35,9 +34,8 @@ export class AddComponent implements OnInit {
    */
   initializeForm(): void {
     this.speechForm = new FormGroup({
-      'id': new FormControl(new Date()),
       'author': new FormControl('', [Validators.required, Validators.minLength(10), Validators.pattern('^[a-zA-Z].*[\s\.]*$')]),
-      'keywords': new FormControl('', [Validators.required]),
+      'keywords': new FormControl([], [Validators.required]),
       'date': new FormControl('', [Validators.required]),
       'body': new FormControl('', [Validators.required, Validators.minLength(10)]),
       'emailAddress': new FormControl([])
