@@ -1,5 +1,5 @@
 # tech-challenge-erick-rebadeo
-# Angular Developer Tech Challenge (Angular 8) with Node Express API and MongoDB by Erick Rebadeo
+# Angular Developer Tech Challenge (Angular 8) with Node Express API and MongoDB
 
 ### Features
 
