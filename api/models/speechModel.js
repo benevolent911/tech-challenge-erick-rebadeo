@@ -10,6 +10,9 @@ const speechSchema = mongoose.Schema(
       type: Array,
       required: [true, "Please enter keywords"],
     },
+    emailAddress: {
+      type: Array,
+    },
     body: {
       type: String,
       required: [true, "Please enter text body"],
