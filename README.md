@@ -1,5 +1,5 @@
 # tech-challenge-erick-rebadeo
-# Angular Developer Tech Challenge (Angular 8) by Erick Rebadeo
+# Angular Developer Tech Challenge (Angular 8) with Node Express API and MongoDB by Erick Rebadeo
 
 ### Features
 
@@ -8,6 +8,8 @@
 * Search by categories
 * Data validation (author, speech content, keyword and date)
 * Unsaved changes confirmation in add new speech page
+* Added backend API using Express (check api folder)
+* Also uses MongoDB with Mongoose library
 
 ### Includes
 * [Ngx-Bootstrap](https://github.com/valor-software/ngx-bootstrap) for CSS and JQuery plugins
@@ -17,9 +19,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.0.
 
-## Development server
+## Development server Frontend
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Development server API
+
+Run `npm run dev` for a API dev server. Navigate to `http://localhost:3000/api/speeches` for the speeches API.
 
 ## Code scaffolding
 
