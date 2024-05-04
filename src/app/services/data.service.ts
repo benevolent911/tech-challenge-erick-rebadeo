@@ -1,25 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { shareReplay } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
+import { environment } from 'src/environments/environment';
 import { Speech } from '../shared/models/speech.model';
-import Speeches from './data.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  private speeches: Speech[] = Speeches;
-
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   /**
    * Load all speeches
    */
-  loadSpeeches(): Observable<Speech[]> {
-    return of(this.speeches).pipe(
-      shareReplay()
-    );
+  loadSpeeches() {
+    return this.http.get(environment.api);
+  }
+
+  /**
+   * Add new speech
+   */
+  addSpeech(speech: Speech) {
+    return this.http.post(environment.api, speech);
+  }
+
+  /**
+   * Delete a speech
+   */
+  deleteSpeech(id: string) {
+    return this.http.delete(`${environment.api}/${id}`);
+  }
+
+  /**
+   * Update a speech
+   */
+  updateSpeech(id: string, speech: Speech) {
+    return this.http.put(`${environment.api}/${id}`, speech);
   }
 }
