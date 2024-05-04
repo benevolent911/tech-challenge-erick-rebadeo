@@ -40,7 +40,7 @@ export class ShareSpeechComponent implements OnInit {
   onSubmit() {
     const email = this.emailForm.value.email;
     this.speech.emailAddress.push(email);
-    this.speechesStore.saveSpeech(this.speech.id, this.speech).pipe(
+    this.speechesStore.saveSpeech(this.speech._id, this.speech).pipe(
       tap(res => {
         this.event.emit(email);
         this.bsModalRef.hide();

@@ -2,7 +2,7 @@
   <span class="primary-text"><i class="fa fa-file" style="color: black;"></i> My Speeches</span>
 </h2>
 <br>
-<ng-container *ngIf="speeches.length > 0; else emptySpeech">
+<ng-container *ngIf="speeches && speeches.length > 0; else emptySpeech">
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let speech of speeches">
       <button class="btn btn-outline-secondary btn-block speeches-btn" (click)="onSelect(speech)">
