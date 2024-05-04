@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { tap } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
 import { ShareSpeechComponent } from '../share-speech/share-speech.component';
@@ -18,7 +18,6 @@ export class SpeechMainComponent implements OnInit, OnChanges {
 
   @Input() speech: Speech;
 
-  isProcessingRequest: boolean;
   modalRef: BsModalRef;
   speechForm: FormGroup;
 
@@ -42,9 +41,9 @@ export class SpeechMainComponent implements OnInit, OnChanges {
    */
   initializeSpeechForm(): void {
     this.speechForm = new FormGroup({
-      'id': new FormControl(''),
+      '_id': new FormControl(''),
       'author': new FormControl('', [Validators.required, Validators.minLength(10), Validators.pattern('^[a-zA-Z].*[\s\.]*$')]),
-      'keywords': new FormControl('', [Validators.required]),
+      'keywords': new FormControl([], [Validators.required]),
       'date': new FormControl('', [Validators.required]),
       'body': new FormControl('', [Validators.required, Validators.minLength(10)]),
       'emailAddress': new FormControl([])
@@ -57,8 +56,8 @@ export class SpeechMainComponent implements OnInit, OnChanges {
    */
   onDelete(): void {
     const speech = this.speechForm.value;
-    this.speechesStore.deleteSpeech(speech.id).pipe(
-      tap(res => {
+    this.speechesStore.deleteSpeech(speech._id).pipe(
+      finalize(() => {
         this.speechForm.reset();
         this.speechForm.disable();
         this.toastr.warning('Speech deleted!', 'Speech App');
@@ -71,12 +70,9 @@ export class SpeechMainComponent implements OnInit, OnChanges {
    */
   onSubmit(): void {
     const speech: Speech = this.speechForm.value;
-    speech.keywords = this.speech.keywords;
-    this.isProcessingRequest = true;
-    this.speechesStore.saveSpeech(speech.id, speech).pipe(
-      tap(res => {
-        this.isProcessingRequest = false;
-        this.toastr.success('Speech updated!', 'Speech App');
+    this.speechesStore.saveSpeech(speech._id, speech).pipe(
+      finalize(() => {
+        this.toastr.success(`Speech by ${speech.author} is updated!`, 'Speech App');
       })
     ).subscribe();
   }
