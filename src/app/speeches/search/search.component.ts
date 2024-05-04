@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
     });
     this.speechForm = new FormGroup({
       'author': new FormControl(''),
-      'keywords': new FormControl(''),
+      'keywords': new FormControl([]),
       'date': new FormControl(''),
       'body': new FormControl('')
     });
