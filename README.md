@@ -25,7 +25,7 @@ Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The 
 
 ## Development server API
 
-Run `npm run dev` for a API dev server. Navigate to `http://localhost:3000/api/speeches` for the speeches API.
+Run `npm run dev` inside api folder for the API dev server. Navigate to `http://localhost:3000/api/speeches` for the speeches API.
 
 ## Code scaffolding
 
